@@ -1,0 +1,32 @@
+.calculator {
+  width: 50vw;
+  height: 70vh;
+  position: absolute;
+  top: 125px;
+  left: 40%;
+    
+  .buttons {
+    width: 30vw;
+    height: 70vh;
+    display: grid;
+    grid-template-rows: repeat(4, 50px);
+    grid-template-columns: repeat(5, 50px);
+    grid-gap: 5px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .calculator {
+    text-align: center;
+    width: 10vw;
+    left: 14%;
+  }
+}
+
+@media (max-width: 300px) {
+  .calculator {
+    width: 50vw;
+    translate: -39px 0;
+  }
+}
