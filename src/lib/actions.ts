@@ -2,7 +2,7 @@ type Result = string | number;
 
 export const calculate = async (equation: string): Promise<Result> => {
   try {
-    const evaluated = eval(equation);
+    const evaluated: number = eval(equation);
 
     if (!isFinite(evaluated)) return "Error";
     if (typeof evaluated !== "number") return "Error";

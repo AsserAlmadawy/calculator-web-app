@@ -13,12 +13,7 @@ type State<T> = [T, React.Dispatch<React.SetStateAction<T>>];
 
 export const Calculator: React.FC = () => {
   const { equation, setEquation } = useContext<StateValues>(AppContext);
-
-  // Backspace handler
-  const handleBackspace: () => void = () => 
-    equation.length === 1 ? setEquation!("0") : setEquation!(equation.slice(0, equation.length - 1));
-
-  // Button definitions
+  const handleBackspace: () => void = () => equation.length === 1 ? setEquation!("0") : setEquation!(equation.slice(0, equation.length - 1));
   const buttons: ButtonProps[] = [
     { value: "7", className: "append" },
     { value: "8", className: "append" },
@@ -44,12 +39,11 @@ export const Calculator: React.FC = () => {
     { value: "-", className: "append operator" },
     { value: "0", className: "append zero" },
     { value: ".", className: "append point" },
-    { value: "×", className: "append operator" },
-    { value: "÷", className: "append operator" },
+    { value: "*", className: "append operator" },
+    { value: "/", className: "append operator" },
     { value: "=", className: "equality operator" }
   ];
 
-  // Interact handler
   interface Interact {
     (e: React.MouseEvent<HTMLDivElement>): void;
   }
@@ -59,7 +53,6 @@ export const Calculator: React.FC = () => {
       const classList: DOMTokenList = e.target.classList as DOMTokenList,
         innerText: string = e.target.innerText as string;
 
-      // Handle appending values
       if (equation === "0") {
         if (
           classList.contains("append") &&
@@ -73,7 +66,6 @@ export const Calculator: React.FC = () => {
             ? setEquation!(equation + innerText)
             : setEquation!(innerText);
       } else {
-        // Handle appending values to existing equation
         if (classList.contains("append")) {
           if (equation.length === 17) return;
           else {
@@ -91,14 +83,10 @@ export const Calculator: React.FC = () => {
           }
         }
 
-        // Handle backspace and clear
         if (classList.contains("backspace")) handleBackspace();
         if (classList.contains("clear")) setEquation!("0");
-
-        // Handle equality and calculation
         if (classList.contains("equality")) {
           try {
-            // Await the result of the calculation
             const result = await calculate(equation);
             setEquation!(result.toString());
             setTimeout(() => setEquation!("0"), 1000);
@@ -116,7 +104,7 @@ export const Calculator: React.FC = () => {
       <Equation />
       <div className="buttons" onClick={interact}>
         {buttons.map((button: ButtonProps) => (
-          <Button className={button.className} value={button.value} key={Math.random().toString()} />
+          <Button className={button.className} value={button.value} key={Math.random()} />
         ))}
       </div>
     </div>
