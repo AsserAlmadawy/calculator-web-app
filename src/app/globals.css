@@ -10,4 +10,10 @@ body {
 .copyright {
   position: absolute;
   bottom: 0;
+  margin-bottom: 100px;
+}
+
+.calculator {
+  position: absolute;
+  translate: 0 -100px;
 }
