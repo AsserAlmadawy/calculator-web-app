@@ -9,8 +9,6 @@ import { AppContext } from "@/context/context";
 import type { StateValues } from "@/context/context";
 import "@/styles/Calculator.css";
 
-type State<T> = [T, React.Dispatch<React.SetStateAction<T>>];
-
 export const Calculator: React.FC = () => {
   const { equation, setEquation } = useContext<StateValues>(AppContext);
   const handleBackspace: () => void = () => equation.length === 1 ? setEquation!("0") : setEquation!(equation.slice(0, equation.length - 1));
@@ -65,6 +63,7 @@ export const Calculator: React.FC = () => {
           classList.contains("point") || classList.contains("operator")
             ? setEquation!(equation + innerText)
             : setEquation!(innerText);
+        if (classList.contains("two-zeroes") || classList.contains("three-zeroes")) setEquation!(equation);
       } else {
         if (classList.contains("append")) {
           if (equation.length === 17) return;
@@ -74,11 +73,12 @@ export const Calculator: React.FC = () => {
               (classList.contains("operator") || classList.contains("point")) &&
                 (equation[equation.length - 1] === "+" ||
                   equation[equation.length - 1] === "-" ||
-                  equation[equation.length - 1] === "×" ||
-                  equation[equation.length - 1] === "÷" ||
+                  equation[equation.length - 1] === "*" ||
+                  equation[equation.length - 1] === "/" ||
                   equation[equation.length - 1] === ".")
             )
-              return;
+              if (classList.contains("two-zeroes") || classList.contains("three-zeroes")) return;
+              else return;
             else setEquation!(equation + innerText);
           }
         }
