@@ -7,7 +7,7 @@ import "./globals.css";
 const roboto: NextFont = Roboto({ subsets: ["latin"], weight: "300" });
 
 export const metadata: Metadata = {
-  title: "Calculator",
+  title: "Calculator by Asser Almadawy",
   description: "A calculator web page",
   authors: [{ name: "Asser Almadawy" }],
   viewport: "width=device-width, initial-scale=1"
