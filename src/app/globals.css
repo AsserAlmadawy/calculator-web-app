@@ -9,8 +9,7 @@ body {
 
 .copyright {
   position: absolute;
-  bottom: 0;
-  margin-bottom: 50px;
+  bottom: 30px;
 }
 
 .calculator {
