@@ -4,4 +4,10 @@ body {
   justify-content: center;
   position: relative;
   overflow: hidden;
+  height: 90vh;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 0;
 }
